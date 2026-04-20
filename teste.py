@@ -13,7 +13,7 @@ novo_jogador = {"nome": n,"nivel": l }
 dados["s"].append(novo_jogador)
 
 with open("seleções.json", "w") as arq:
-    json.dump(dados, arq, indent=4)
+    json.dump(dados, arq, indent=4, ensure_ascii=False)
 
 while True:
 
@@ -33,4 +33,5 @@ while True:
             print("Jogador não encontrado")
 
 with open("seleções.json", "w") as arq:
-    json.dump(dados, arq, indent=4)
+    json.dump(dados, arq, indent=4, ensure_ascii=False)
+

@@ -34,7 +34,7 @@ Bem vindo, escolha uma das coisas a seguir:
         novo_c = input("Confederação: ")
         novo_t = input("Treinador: ")
 
-        nova_seleção = {"País": novo_s, "Grupo": novo_g, "Confederação": novo_c, "Treinador": novo_t, "ID": novo_id}
+        nova_seleção = {"País": novo_p, "Grupo": novo_g, "Confederação": novo_c, "Treinador": novo_t, "ID": novo_id}
         dados["s"].append(nova_seleção)
 
         with open("seleções.json", "w") as arq:
@@ -55,10 +55,32 @@ Bem vindo, escolha uma das coisas a seguir:
             json.dump(dados, arq, indent=4, ensure_ascii=False)
 
     elif escolha == 4:
-        edit = input("Qual elemento? \n 1- País \n 2 - Grupo \n 3 - Confederação")
+        edit = int(input("Qual elemento? \n 1- País \n 2 - Grupo \n 3 - Confederação \n "))
         if edit == 1:
-            n_p = input("Fale: ")
+            nome = input("Fale o nome do País: ")
+            for l in dados["s"]: 
+                if l["País"] == nome:
+                    novo_país = input("Digite o novo nome: ")
+                    l["País"] = novo_país
+            with open("seleções.json", "w") as arq:
+                json.dump(dados, arq, indent=4, ensure_ascii=False)
 
-    
+        elif edit == 2:
+            nome = input("Fale o nome do País: ")
+            for l in dados["s"]: 
+                if l["País"] == nome:
+                    novo_grupo = input("Digite o novo nome: ")
+                    l["Grupo"] = novo_grupo
+            with open("seleções.json", "w") as arq:
+                json.dump(dados, arq, indent=4, ensure_ascii=False)
+        elif edit == 3:
+            nome = input("Fale o nome do País: ")
+            for l in dados["s"]: 
+                if l["País"] == nome:
+                    novo_confederação = input("Digite o novo nome: ")
+                    l["Confederação"] = novo_confederação
+            with open("seleções.json", "w") as arq:
+                json.dump(dados, arq, indent=4, ensure_ascii=False)
+
     elif escolha == 5:
         break

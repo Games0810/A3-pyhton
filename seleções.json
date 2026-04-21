@@ -1,3 +1,18 @@
 {
-    "s": []
+    "s": [
+        {
+            "País": "Russia",
+            "Grupo": "1",
+            "Confederação": "2",
+            "Treinador": "3",
+            "ID": "24326910946"
+        },
+        {
+            "País": "Brasil",
+            "Grupo": "1",
+            "Confederação": "Sla",
+            "Treinador": "3",
+            "ID": "51138281077"
+        }
+    ]
 }

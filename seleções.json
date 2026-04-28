@@ -1,25 +1,25 @@
 {
     "s": [
         {
-            "País": "Russia",
+            "País": "Brasil",
             "Grupo": "1",
             "Confederação": "2",
             "Treinador": "3",
-            "ID": "24326910946"
+            "ID": 6998818892
         },
         {
             "País": "Brasil",
-            "Grupo": "1",
-            "Confederação": "Sla",
-            "Treinador": "3",
-            "ID": "51138281077"
+            "Grupo": "a",
+            "Confederação": "q",
+            "Treinador": "w",
+            "ID": 8299376945
         },
         {
-            "País": "da",
+            "País": "México",
             "Grupo": "d",
             "Confederação": "a",
-            "Treinador": "",
-            "ID": "102342974104"
+            "Treinador": "d",
+            "ID": 5986998254
         }
     ]
 }

@@ -1,6 +1,7 @@
 import json
 from random import randint
 
+
 while True:
     print("""
 Bem vindo, escolha uma das coisas a seguir:
@@ -54,19 +55,26 @@ Bem vindo, escolha uma das coisas a seguir:
 
 
     elif escolha == 3:
+        id_criado = False
+        duplicado = False
         while True:
             novo_id = ""
             id = ""
             for i in range (10):
-                n = randint(1, 9)
+                n = randint(0, 9)
                 id += str(n)
             for ids in dados["s"]:
                 if id == ids["ID"]:
-                    id = ""
+                    duplicado = True
                     continue
-            else:
-                novo_id = id
-                break
+
+                if not duplicado:
+                    novo_id = id
+                    id_criado = True
+                    break
+
+            if id_criado == True:
+                break 
 
         while True:
             novo_p = input("País: ").strip()
@@ -121,7 +129,7 @@ Bem vindo, escolha uma das coisas a seguir:
     
     elif escolha == 4:
         try:
-            remover = input("Fale o ID do país: ")
+            remover = int(input("Fale o ID do país: "))
 
         except ValueError:
             print("Digite somente números")
@@ -169,6 +177,7 @@ Bem vindo, escolha uma das coisas a seguir:
                     l["Grupo"] = novo_grupo
             with open("seleções.json", "w") as arq:
                 json.dump(dados, arq, indent=4, ensure_ascii=False)
+
         elif edit == 3:
             nome = input("Fale o ID do País: ")
             for l in dados["s"]: 
@@ -177,10 +186,11 @@ Bem vindo, escolha uma das coisas a seguir:
                     l["Confederação"] = novo_confederação
             with open("seleções.json", "w") as arq:
                 json.dump(dados, arq, indent=4, ensure_ascii=False)
+
         elif edit == 4:
-            nome = input("Fale o nome do País: ")
+            nome = input("Fale o ID do País: ")
             for l in dados["s"]: 
-                if l["País"] == nome:
+                if l["ID"] == nome:
                     novo_treinador = input("Digite o novo nome: ")
                     l["Treinador"] = novo_treinador
             with open("seleções.json", "w") as arq:

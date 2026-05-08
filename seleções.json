@@ -1,32 +1,32 @@
 {
     "s": [
         {
-            "País": "Brasil",
-            "Grupo": "1",
-            "Confederação": "2",
-            "Treinador": "3",
-            "ID": 6998818892
-        },
-        {
-            "País": "Brasil",
+            "País": "Marrocos",
             "Grupo": "a",
             "Confederação": "q",
             "Treinador": "w",
             "ID": 8299376945
         },
         {
-            "País": "México",
-            "Grupo": "d",
-            "Confederação": "a",
-            "Treinador": "d",
-            "ID": 5986998254
+            "País": "Brasil",
+            "Grupo": "q",
+            "Confederação": "w",
+            "Treinador": "e",
+            "ID": 7
         },
         {
-            "País": "Marrocos",
-            "Grupo": "3",
-            "Confederação": "Sla",
-            "Treinador": "Doido",
-            "ID": 2469871743
+            "País": "Portugal",
+            "Grupo": "q",
+            "Confederação": "w",
+            "Treinador": "e",
+            "ID": 7242574587
+        },
+        {
+            "País": "Espanhol",
+            "Grupo": "q",
+            "Confederação": "w",
+            "Treinador": "e",
+            "ID": 6974859195
         }
     ]
 }

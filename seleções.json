@@ -8,13 +8,6 @@
             "ID": 8299376945
         },
         {
-            "País": "Brasil",
-            "Grupo": "q",
-            "Confederação": "w",
-            "Treinador": "e",
-            "ID": 7
-        },
-        {
             "País": "Portugal",
             "Grupo": "q",
             "Confederação": "w",
@@ -22,11 +15,11 @@
             "ID": 7242574587
         },
         {
-            "País": "Espanhol",
-            "Grupo": "q",
-            "Confederação": "w",
-            "Treinador": "e",
-            "ID": 6974859195
+            "País": "Argentina",
+            "Grupo": "Sla",
+            "Confederação": "qw",
+            "Treinador": "qw",
+            "ID": 5455766453
         }
     ]
 }

@@ -66,7 +66,7 @@ Bem vindo, escolha uma das coisas a seguir:
             s = ""
             for i in range (10):
                 n = randint(1,9)
-                
+                s += str(n)
                 id = int(s)
             for ids in dados["s"]:
                 if id == ids["ID"]:
@@ -82,7 +82,7 @@ Bem vindo, escolha uma das coisas a seguir:
                 break 
 
         while True:
-            novo_p = input("Digite o novo nome: ")
+            novo_p = input("País: ")
 
             if texto(novo_p):
                 break
@@ -97,13 +97,13 @@ Bem vindo, escolha uma das coisas a seguir:
                 break
 
         while True:
-            novo_c = input("Digite o novo nome: ")
+            novo_c = input("Confederação: ")
 
             if texto(novo_c):
                 break
 
         while True:
-            novo_t = input("Digite o novo nome: ")
+            novo_t = input("Treinador: ")
 
             if texto(novo_t):
                 break
@@ -117,7 +117,7 @@ Bem vindo, escolha uma das coisas a seguir:
     elif escolha == 4:
         encontrado = False
         while True:
-            remover = input("Fale o ID do país: ")
+            remover = input("Fale o ID do país: ").strip()
 
             if numeros(remover):
                 remover = int(remover)
@@ -200,4 +200,5 @@ Bem vindo, escolha uma das coisas a seguir:
                         json.dump(dados, arq, indent=4, ensure_ascii=False)
 
     elif escolha == 6:
+        print("Até a próxima!")
         break

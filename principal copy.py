@@ -129,9 +129,9 @@ Bem vindo, escolha uma das coisas a seguir:
                 encontrado = True
                 if encontrado == True:
                         while True: 
-                            confirmacao = str(input(f"Você realmente desejar excluir os dados do país {lista["País"]}? [S/N]")).upper()
+                            confirmacao = str(input(f"Você realmente desejar excluir os dados do país {lista["País"]}? [S/N]")).upper().strip()
                             
-                            if confirmacao in "S":
+                            if confirmacao == "S":
                                 dados["s"].remove(lista)
                                 print("Removido")
 
@@ -139,7 +139,7 @@ Bem vindo, escolha uma das coisas a seguir:
                                     json.dump(dados, arq, indent=4, ensure_ascii=False)
                                 break
 
-                            elif confirmacao in "N":
+                            elif confirmacao == "N":
                                 break
                             else:
                                 print("Digite somente 'S' ou 'N' ")
@@ -156,48 +156,41 @@ Bem vindo, escolha uma das coisas a seguir:
             if l["ID"] == nome:
                 print("País encontrado")
                 encontrado2 = True
-        if encontrado2 == False:
-            print("País não encontrado")
-            continue
 
-        
-        if encontrado2 == True:
-            if edit == 1: 
-                novo_país = str(input("Digite o novo nome: "))
+            if encontrado2 == True:
+                if edit == 1: 
+                    novo_país = str(input("Digite o novo nome: "))
 
-                if novo_país == "":
-                        print("Não pode digitar nada")
-                elif not novo_país.replace(" ", "").isalpha():
-                        print("Digite somente letras")
+                    l["País"] = novo_país
+                    print("Edição feita com sucesso")
+                    break
 
-                l["País"] = novo_país
-                with open("seleções.json", "w") as arq:
-                    json.dump(dados, arq, indent=4, ensure_ascii=False)
+                elif edit == 2:
+                    novo_grupo = input("Digite o novo nome: ")
 
-            elif edit == 2:
-                novo_grupo = input("Digite o novo nome: ")
+                    l["Grupo"] = novo_grupo
+                    break
 
-                if novo_grupo == "":
-                    print("Não pode digitar nada")
-                elif not novo_grupo.replace(" ", "").isalpha():
-                    print("Digite somente letras")
+                elif edit == 3:
+                    novo_confederação = input("Digite o novo nome: ")
 
-                l["Grupo"] = novo_grupo
-                with open("seleções.json", "w") as arq:
-                    json.dump(dados, arq, indent=4, ensure_ascii=False)
+                    l["Confederação"] = novo_confederação
+                    print("Edição feita com sucesso")
+                    break
 
-            elif edit == 3:
-                novo_confederação = input("Digite o novo nome: ")
-
-                l["Confederação"] = novo_confederação
-                with open("seleções.json", "w") as arq:
-                    json.dump(dados, arq, indent=4, ensure_ascii=False)
-
-            elif edit == 4:
+                elif edit == 4:
                     novo_treinador = input("Digite o novo nome: ")
+
                     l["Treinador"] = novo_treinador
-                    with open("seleções.json", "w") as arq:
-                        json.dump(dados, arq, indent=4, ensure_ascii=False)
+                    print("Edição feita com sucesso")
+                    break
+
+        with open("seleções.json", "w") as arq:
+            json.dump(dados, arq, indent=4, ensure_ascii=False)
+
+        if encontrado2 == False:
+            print("ID não encontrado")
+            continue
 
     elif escolha == 6:
         print("Até a próxima!")

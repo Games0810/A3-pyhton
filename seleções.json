@@ -1,25 +1,18 @@
 {
     "s": [
         {
-            "País": "Marrocos",
+            "PaÃ­s": "Marrocos",
             "Grupo": "a",
-            "Confederação": "q",
+            "ConfederaÃ§Ã£o": "q",
             "Treinador": "w",
             "ID": 8299376945
         },
         {
-            "País": "Portugal",
-            "Grupo": "q",
-            "Confederação": "w",
-            "Treinador": "e",
-            "ID": 7242574587
-        },
-        {
-            "País": "Argentina",
-            "Grupo": "Sla",
-            "Confederação": "qw",
-            "Treinador": "qw",
-            "ID": 5455766453
+            "País": "Espanha",
+            "Grupo": "qwe",
+            "Confederação": "qwe",
+            "Treinador": "qew",
+            "ID": 9483691361
         }
     ]
 }

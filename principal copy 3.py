@@ -4,6 +4,7 @@ from funções import texto
 from funções import numeros
 
 
+
 while True:
     print("""
 Bem vindo, escolha uma das coisas a seguir:
@@ -38,6 +39,7 @@ Bem vindo, escolha uma das coisas a seguir:
 
     elif escolha == 2:
         while True:
+            encontrado3 = False
             lista_nome = input("Fale o ID do país: ")
 
             if numeros(lista_nome):
@@ -46,6 +48,7 @@ Bem vindo, escolha uma das coisas a seguir:
 
         for p in dados["s"]:
             if p["ID"] == lista_nome:
+                    encontrado3 = True
                     print("-="*20)
                     print(f"ID: {p['ID']}")
                     print(f"País: {p['País']}")
@@ -53,7 +56,7 @@ Bem vindo, escolha uma das coisas a seguir:
                     print(f"Confederação: {p['Confederação']}")
                     print(f"Treinador: {p['Treinador']}")
                     print("-="*20)
-        else: 
+        if encontrado3 == False:
             print("País não encontrado")
 
 

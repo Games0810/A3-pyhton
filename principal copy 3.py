@@ -14,7 +14,7 @@ Bem vindo, escolha uma das coisas a seguir:
 5- Editar
 6- Sair""")
     while True:
-            escolha = (input("Resposta: "))
+            escolha = input("Resposta: ")
 
             if numeros(escolha):
                 escolha = int(escolha)
@@ -129,7 +129,7 @@ Bem vindo, escolha uma das coisas a seguir:
                 encontrado = True
                 if encontrado == True:
                         while True: 
-                            confirmacao = str(input(f"Você realmente desejar excluir os dados do país {lista["País"]}? [S/N]")).upper().strip()
+                            confirmacao = input(f"Você realmente desejar excluir os dados do país {lista["País"]}? [S/N]").upper().strip()
                             
                             if confirmacao == "S":
                                 dados["s"].remove(lista)
@@ -150,14 +150,19 @@ Bem vindo, escolha uma das coisas a seguir:
 
     elif escolha == 5:
         encontrado2 = False
-<<<<<<< HEAD
-        edit = int(input("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: "))
-        nome = int(input("Fale o ID do País: "))
-=======
-        edit = (input("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: "))
-        nome = (input("Fale o ID do País: "))
+        while  True:
+            edit = input("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: ")
+            
+            if numeros(edit):
+                edit = int(edit)
+                break
 
->>>>>>> Melhor
+        while True:
+            nome = (input("Fale o ID do País: "))
+            if numeros(nome):
+                nome = int(nome)
+                break
+
         for l in dados["s"]: 
             if l["ID"] == nome:
                 print("País encontrado")
@@ -165,79 +170,40 @@ Bem vindo, escolha uma das coisas a seguir:
 
             if encontrado2 == True:
                 if edit == 1: 
-<<<<<<< HEAD
-<<<<<<<< HEAD:principal copy 2.py
-=======
->>>>>>> Melhor
-                    novo_país = str(input("Digite o novo nome: "))
-
-                    l["País"] = novo_país
-                    print("Edição feita com sucesso")
-                    break
-
-                elif edit == 2:
-                    novo_grupo = input("Digite o novo nome: ")
-<<<<<<< HEAD
-
-=======
-                    while True:
-                        if novo_g == "":
-                            print("Não pode digitar nada")
-                            continue
-                        else:
-                            break
->>>>>>> Melhor
-                    l["Grupo"] = novo_grupo
-                    break
-
-                elif edit == 3:
-                    novo_confederação = input("Digite o novo nome: ")
-
-<<<<<<< HEAD
-                    l["Confederação"] = novo_confederação
-                    print("Edição feita com sucesso")
-                    break
-
-========
                     novo_país = input("Digite o novo nome: ")
                     
-                    l["País"] = novo_país
-                    print("Edição feita com sucesso")
-                    break
+                    if texto(novo_país):
+                        l["País"] = novo_país
+                        print("Edição feita com sucesso")
+                        break
+                        
 
                 elif edit == 2:
                     novo_grupo = input("Digite o novo nome: ")
+                    while True:
+                        if novo_grupo == "":
+                            print("Não pode digitar nada")
+                        else:
+                            break
 
                     l["Grupo"] = novo_grupo
                     break
 
                 elif edit == 3:
                     novo_confederação = input("Digite o novo nome: ")
-=======
-                    if texto(novo_país):
+
+                    if texto(novo_confederação):
+                        l["Confederação"] = novo_confederação
+                        print("Edição feita com sucesso")
                         break
->>>>>>> Melhor
 
-                    l["Confederação"] = novo_confederação
-                    print("Edição feita com sucesso")
-                    break
-
-<<<<<<< HEAD
->>>>>>>> Melhor:principal copy.py
                 elif edit == 4:
                     novo_treinador = input("Digite o novo nome: ")
 
-=======
-                elif edit == 4:
-                    novo_treinador = input("Digite o novo nome: ")
-
-                    if texto(novo_país):
+                    if texto(novo_treinador):
+                        l["Treinador"] = novo_treinador
+                        print("Edição feita com sucesso")
                         break
-
->>>>>>> Melhor
-                    l["Treinador"] = novo_treinador
-                    print("Edição feita com sucesso")
-                    break
 
         with open("seleções.json", "w") as arq:
             json.dump(dados, arq, indent=4, ensure_ascii=False)

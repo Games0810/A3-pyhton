@@ -85,7 +85,7 @@ Bem vindo, escolha uma das coisas a seguir:
                 break 
 
         while True:
-            novo_p = input("País: ")
+            novo_p = input("País: ").strip()
 
             if texto(novo_p):
                 break
@@ -100,13 +100,13 @@ Bem vindo, escolha uma das coisas a seguir:
                 break
 
         while True:
-            novo_c = input("Confederação: ")
+            novo_c = input("Confederação: ").strip()
 
             if texto(novo_c):
                 break
 
         while True:
-            novo_t = input("Treinador: ")
+            novo_t = input("Treinador: ").strip()
 
             if texto(novo_t):
                 break
@@ -152,16 +152,26 @@ Bem vindo, escolha uma das coisas a seguir:
             print("Não encontrado")
 
     elif escolha == 5:
+        pode1 = False
+        pode2 = False
         encontrado2 = False
         while  True:
-            edit = input("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: ")
-            
+            edit = input("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: ").strip()
+
             if numeros(edit):
                 edit = int(edit)
+                pode1 = True
+
+            if edit not in (1,2,3,4):
+                print('Digite um número da lista')
+            else:
+                pode2 = True
+
+            if pode1 == True and pode2 == True:
                 break
 
         while True:
-            nome = (input("Fale o ID do País: "))
+            nome = (input("Fale o ID do País: ")).strip()
             if numeros(nome):
                 nome = int(nome)
                 break
@@ -173,7 +183,7 @@ Bem vindo, escolha uma das coisas a seguir:
 
             if encontrado2 == True:
                 if edit == 1: 
-                    novo_país = input("Digite o novo nome: ")
+                    novo_país = input("Digite o novo nome: ").strip()
                     
                     if texto(novo_país):
                         l["País"] = novo_país
@@ -182,7 +192,7 @@ Bem vindo, escolha uma das coisas a seguir:
                         
 
                 elif edit == 2:
-                    novo_grupo = input("Digite o novo nome: ")
+                    novo_grupo = input("Digite o novo nome: ").strip()
                     while True:
                         if novo_grupo == "":
                             print("Não pode digitar nada")
@@ -193,7 +203,7 @@ Bem vindo, escolha uma das coisas a seguir:
                     break
 
                 elif edit == 3:
-                    novo_confederação = input("Digite o novo nome: ")
+                    novo_confederação = input("Digite o novo nome: ").strip()
 
                     if texto(novo_confederação):
                         l["Confederação"] = novo_confederação
@@ -201,7 +211,7 @@ Bem vindo, escolha uma das coisas a seguir:
                         break
 
                 elif edit == 4:
-                    novo_treinador = input("Digite o novo nome: ")
+                    novo_treinador = input("Digite o novo nome: ").strip()
 
                     if texto(novo_treinador):
                         l["Treinador"] = novo_treinador

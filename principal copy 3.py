@@ -1,7 +1,7 @@
 import json
 from random import randint
 from funções import texto
-from funções import numeros
+from funções import numeros 
 
 
 
@@ -14,12 +14,10 @@ Bem vindo, escolha uma das coisas a seguir:
 4- Excluir
 5- Editar
 6- Sair""")
-    while True:
-            escolha = input("Resposta: ").strip()
+    escolha = input("Resposta: ").strip()
 
-            if numeros(escolha):
-                escolha = int(escolha)
-                break
+    if numeros(escolha):
+        escolha = int(escolha)
 
     if escolha not in (1,2,3,4,5,6):
         print("Escolha um número na lista")
@@ -61,28 +59,25 @@ Bem vindo, escolha uma das coisas a seguir:
 
 
     elif escolha == 3:
-        id_criado = False
-        duplicado = False
         while True:
+            duplicado = False
             novo_id = ""
             id = ""
-            s = ""
             for i in range (10):
                 n = randint(1,9)
-                s += str(n)
-                id = int(s)
+                id += str(n)
+            id = int(id)
             for ids in dados["s"]:
                 if id == ids["ID"]:
                     duplicado = True
-                    continue
+            
+            if duplicado == True:
+                continue
 
-                if not duplicado:
-                    novo_id = id
-                    id_criado = True
-                    break
-
-            if id_criado == True:
-                break 
+            if duplicado == False:
+                novo_id = id
+                break
+ 
 
         while True:
             novo_p = input("País: ").strip()
@@ -93,10 +88,7 @@ Bem vindo, escolha uma das coisas a seguir:
         while True:
             novo_g = input("Grupo: ").strip()
 
-            if novo_g == "":
-                print("Não pode digitar nada")
-                continue
-            else:
+            if texto(novo_g):
                 break
 
         while True:
@@ -111,7 +103,7 @@ Bem vindo, escolha uma das coisas a seguir:
             if texto(novo_t):
                 break
 
-        nova_seleção = {"País": novo_p, "Grupo": novo_g, "Confederação": novo_c, "Treinador": novo_t, "ID": int(novo_id)}
+        nova_seleção = {"País": novo_p, "Grupo": novo_g, "Confederação": novo_c, "Treinador": novo_t, "ID": novo_id}
         dados["s"].append(nova_seleção)
 
         with open("seleções.json", "w") as arq:
@@ -153,9 +145,9 @@ Bem vindo, escolha uma das coisas a seguir:
 
     elif escolha == 5:
         encontrado2 = False
+        pode2 = False
         while  True:
             pode1 = False
-            pode2 = False
             edit = input("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: ").strip()
 
             if numeros(edit):

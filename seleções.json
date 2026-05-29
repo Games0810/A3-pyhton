@@ -1,25 +1,11 @@
 {
     "s": [
         {
-            "País": "Espanha",
-            "Grupo": "a",
-            "Confederação": "lokoi",
-            "Treinador": "Marquinhos",
-            "ID": 8299376945
-        },
-        {
-            "País": "Brazil",
-            "Grupo": "Ko",
-            "Confederação": "ok",
-            "Treinador": "lol",
-            "ID": 1361974266
-        },
-        {
-            "País": "Portugal",
-            "Grupo": "qwe",
-            "Confederação": "loko",
-            "Treinador": "yui",
-            "ID": 6255395623
+            "PaÃ­s": "Brasil",
+            "Grupo": "Grupo H",
+            "ConfederaÃ§Ã£o": "sla",
+            "Treinador": "Roberto",
+            "ID": 1244533236
         }
     ]
 }

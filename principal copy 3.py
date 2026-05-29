@@ -22,7 +22,7 @@ Bem vindo, escolha uma das coisas a seguir:
     if escolha not in (1,2,3,4,5,6):
         print("Escolha um número na lista")
 
-    with open("seleções.json", "r") as arq:
+    with open("seleções.json", "r", encoding="utf-8") as arq:
         dados = json.load(arq)
 
     if escolha == 1:
@@ -106,9 +106,9 @@ Bem vindo, escolha uma das coisas a seguir:
         nova_seleção = {"País": novo_p, "Grupo": novo_g, "Confederação": novo_c, "Treinador": novo_t, "ID": novo_id}
         dados["s"].append(nova_seleção)
 
-        with open("seleções.json", "w") as arq:
+        with open("seleções.json", "w", encoding="utf-8") as arq:
             json.dump(dados, arq, indent=4, ensure_ascii=False)
-    
+
     elif escolha == 4:
         encontrado = False
         while True:
@@ -130,7 +130,7 @@ Bem vindo, escolha uma das coisas a seguir:
                                 dados["s"].remove(lista)
                                 print("Removido")
 
-                                with open("seleções.json", "w") as arq:
+                                with open("seleções.json", "w", encoding="utf-8") as arq:
                                     json.dump(dados, arq, indent=4, ensure_ascii=False)
                                 break
 
@@ -210,7 +210,7 @@ Bem vindo, escolha uma das coisas a seguir:
                         print("Edição feita com sucesso")
                         break
 
-        with open("seleções.json", "w") as arq:
+        with open("seleções.json", "w", encoding="utf-8") as arq:
             json.dump(dados, arq, indent=4, ensure_ascii=False)
 
         if encontrado2 == False:

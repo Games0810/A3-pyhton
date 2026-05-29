@@ -15,7 +15,7 @@ Bem vindo, escolha uma das coisas a seguir:
 5- Editar
 6- Sair""")
     while True:
-            escolha = input("Resposta: ")
+            escolha = input("Resposta: ").strip()
 
             if numeros(escolha):
                 escolha = int(escolha)
@@ -40,7 +40,7 @@ Bem vindo, escolha uma das coisas a seguir:
     elif escolha == 2:
         while True:
             encontrado3 = False
-            lista_nome = input("Fale o ID do país: ")
+            lista_nome = input("Fale o ID do país: ").strip()
 
             if numeros(lista_nome):
                 lista_nome = int(lista_nome)
@@ -152,17 +152,17 @@ Bem vindo, escolha uma das coisas a seguir:
             print("Não encontrado")
 
     elif escolha == 5:
-        pode1 = False
-        pode2 = False
         encontrado2 = False
         while  True:
+            pode1 = False
+            pode2 = False
             edit = input("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: ").strip()
 
             if numeros(edit):
                 edit = int(edit)
                 pode1 = True
 
-            if edit not in (1,2,3,4):
+            if edit not in (1,2,3,4) and pode1 == True:
                 print('Digite um número da lista')
             else:
                 pode2 = True

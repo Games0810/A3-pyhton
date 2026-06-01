@@ -6,6 +6,7 @@ from funções import numeros
 
 
 while True:
+    permissao1 = False
     print("""
 Bem vindo, escolha uma das coisas a seguir:
 1- Ver lista
@@ -18,8 +19,9 @@ Bem vindo, escolha uma das coisas a seguir:
 
     if numeros(escolha):
         escolha = int(escolha)
+        permissao1 = True
 
-    if escolha not in (1,2,3,4,5,6):
+    if escolha not in (1,2,3,4,5,6) and permissao1 == True:
         print("Escolha um número na lista")
 
     with open("seleções.json", "r", encoding="utf-8") as arq:

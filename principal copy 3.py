@@ -6,6 +6,8 @@ from funções import numeros
 
 
 while True:
+    with open("seleções.json", "r", encoding="utf-8") as arq:
+        dados = json.load(arq)
     permissao1 = False
     print("""
 Bem vindo, escolha uma das coisas a seguir:
@@ -23,9 +25,6 @@ Bem vindo, escolha uma das coisas a seguir:
 
     if escolha not in (1,2,3,4,5,6) and permissao1 == True:
         print("Escolha um número na lista")
-
-    with open("seleções.json", "r", encoding="utf-8") as arq:
-        dados = json.load(arq)
 
     if escolha == 1:
         print("-="*20)
@@ -141,7 +140,6 @@ Bem vindo, escolha uma das coisas a seguir:
                             else:
                                 print("Digite somente 'S' ou 'N' ")
                             continue
-                break
         if encontrado == False:
             print("Não encontrado")
 
@@ -155,11 +153,12 @@ Bem vindo, escolha uma das coisas a seguir:
             if numeros(edit):
                 edit = int(edit)
                 pode1 = True
-
-            if edit not in (1,2,3,4) and pode1 == True:
-                print('Digite um número da lista')
-            else:
-                pode2 = True
+            
+            if pode1 == True:    
+                if edit not in (1,2,3,4):
+                    print('Digite um número da lista')
+                else:
+                    pode2 = True
 
             if pode1 == True and pode2 == True:
                 break
@@ -176,25 +175,23 @@ Bem vindo, escolha uma das coisas a seguir:
                 encontrado2 = True
 
             if encontrado2 == True:
-                if edit == 1: 
-                    novo_país = input("Digite o novo nome: ").strip()
-                    
-                    if texto(novo_país):
-                        l["País"] = novo_país
-                        print("Edição feita com sucesso")
-                        break
+                if edit == 1:
+                    while True:
+                        novo_país = input("Digite o novo nome: ").strip()
+                        
+                        if texto(novo_país):
+                            l["País"] = novo_país
+                            print("Edição feita com sucesso")
+                            break
+                    break
                         
 
                 elif edit == 2:
                     novo_grupo = input("Digite o novo nome: ").strip()
-                    while True:
-                        if novo_grupo == "":
-                            print("Não pode digitar nada")
-                        else:
-                            break
-
-                    l["Grupo"] = novo_grupo
-                    break
+                    if texto(novo_grupo):
+                        l["Grupo"] = novo_grupo
+                        print("Edição feita com sucesso")
+                        break
 
                 elif edit == 3:
                     novo_confederação = input("Digite o novo nome: ").strip()
@@ -214,7 +211,7 @@ Bem vindo, escolha uma das coisas a seguir:
 
         with open("seleções.json", "w", encoding="utf-8") as arq:
             json.dump(dados, arq, indent=4, ensure_ascii=False)
-
+        
         if encontrado2 == False:
             print("ID não encontrado")
             continue

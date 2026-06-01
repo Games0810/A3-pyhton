@@ -2,10 +2,38 @@
     "s": [
         {
             "País": "Brasil",
-            "Grupo": "Grupo H",
-            "Confederação": "sla",
-            "Treinador": "Roberto",
+            "Grupo": "Grupo G",
+            "Confederação": "CONMEBOL",
+            "Treinador": "Carlo Ancelotti",
             "ID": 1244533236
+        },
+        {
+            "País": "Argentina",
+            "Grupo": "Grupo E",
+            "Confederação": "CONMEBOL",
+            "Treinador": "Lionel Scaloni",
+            "ID": 9715493987
+        },
+        {
+            "País": "França",
+            "Grupo": "Grupo B",
+            "Confederação": "UEFA",
+            "Treinador": "Didier Deschamps",
+            "ID": 5381111236
+        },
+        {
+            "País": "Espanha",
+            "Grupo": "Grupo D",
+            "Confederação": "UEFA",
+            "Treinador": "Luis de la Fuente",
+            "ID": 8433124975
+        },
+        {
+            "País": "Portugal",
+            "Grupo": "Grupo F",
+            "Confederação": "UEFA",
+            "Treinador": "Roberto Martínez",
+            "ID": 4442497948
         }
     ]
 }

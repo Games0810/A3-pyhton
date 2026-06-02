@@ -35,9 +35,9 @@ Bem vindo, escolha uma das coisas a seguir:
 
     if escolha == 1:
         #Percorre a lista 
+        print("-="*20)
         for lista in dados["s"]:
             #Todos os itens são mostrados
-            print("-="*20)
             print(f"ID: {lista['ID']}")
             print(f"País: {lista['País']}")
             print(f"Grupo: {lista['Grupo']}")
@@ -46,14 +46,9 @@ Bem vindo, escolha uma das coisas a seguir:
             print("-="*20)
 
     elif escolha == 2:
-        while True:
-            encontrado3 = False
-            lista_nome = validar_numero("Fale o ID do país: ")
+        encontrado3 = False
+        lista_nome = validar_numero("Fale o ID do país: ")
 
-            #Função é chamada dentro do "if"
-            if numeros(lista_nome):
-                lista_nome = int(lista_nome)
-                break
 
         #Percorre a lista 
         for pais in dados["s"]:
@@ -66,7 +61,7 @@ Bem vindo, escolha uma das coisas a seguir:
                     print(f"Grupo: {pais['Grupo']}")
                     print(f"Confederação: {pais['Confederação']}")
                     print(f"Treinador: {pais['Treinador']}")
-                    print("-="*20)
+            print("-="*20)
 
         #Caso o país não seja encontrado
         if encontrado3 == False:
@@ -77,11 +72,10 @@ Bem vindo, escolha uma das coisas a seguir:
         #Sistema de criação de ID
         while True:
             duplicado = False
-            novo_id = ""
             id = ""
             for num in range (10):
-                num = randint(1,9)
-                id += str(num)
+                n = randint(1,9)
+                id += str(n)
             id = int(id)
             for ids in dados["s"]:
                 if id == ids["ID"]:
@@ -113,12 +107,7 @@ Bem vindo, escolha uma das coisas a seguir:
 
     elif escolha == 4:
         encontrado = False
-        while True:
-            remover = input("Fale o ID do país: ").strip()
-
-            if numeros(remover):
-                remover = int(remover)
-                break 
+        remover = validar_numero("Fale o ID do país: ")
 
         #Percorre a lista 
         for lista in dados["s"]:
@@ -155,27 +144,19 @@ Bem vindo, escolha uma das coisas a seguir:
         pode2 = False
         while  True:
             pode1 = False
-            edit = input("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: ").strip()
-
-            if numeros(edit):
-                edit = int(edit)
-                pode1 = True
+            edit = validar_numero("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: ").strip()
+            pode1 = True
             
-            if pode1 == True:    
-                if edit not in (1,2,3,4):
-                    print('Digite um número da lista')
-                else:
-                    pode2 = True
+            if edit not in (1,2,3,4) and pode1 == True:
+                print('Digite um número da lista')
+            else:
+                pode2 = True
             
             #Caso o valor digitado seja um número e que está 
             if pode1 == True and pode2 == True:
                 break
 
-        while True:
-            nome = (input("Fale o ID do País: ")).strip()
-            if numeros(nome):
-                nome = int(nome)
-                break
+        nome = validar_numero("Fale o ID do país: ")
 
         #Percorre a lista
         for l in dados["s"]: 
@@ -185,40 +166,25 @@ Bem vindo, escolha uma das coisas a seguir:
 
             if encontrado2 == True:
                 if edit == 1:
-                    while True:
-                        novo_país = input("Digite o novo nome: ").strip()
-                        
-                        if texto(novo_país):
-                            #Troca o item antigo pelo novo item
-                            l["País"] = novo_país
-                            print("Edição feita com sucesso")
-                            #Quebra o laço de repetição "while"
-                            break
+                    novo_país = validar_texto("Digite o novo nome")
+                    l["País"] = novo_país
 
                 elif edit == 2:
-                    while True:
-                        novo_grupo = input("Digite o novo nome: ").strip()
-                        if texto(novo_grupo):
-                            l["Grupo"] = novo_grupo
-                            print("Edição feita com sucesso")
-                            break
+                    novo_grupo = validar_texto("Digite o novo nome")
+                    l["Grupo"] = novo_grupo
+                    
+                            
 
                 elif edit == 3:
-                    while True:
-                        novo_confederação = input("Digite o novo nome: ").strip()
-                        if texto(novo_confederação):
-                            l["Confederação"] = novo_confederação
-                            print("Edição feita com sucesso")
-                            break
+                    novo_confederação = validar_texto("Digite o novo nome")    
+                    l["Confederação"] = novo_confederação
+                            
 
                 elif edit == 4:
-                    while True:
-                        novo_treinador = input("Digite o novo nome: ").strip()
-                        if texto(novo_treinador):
-                            l["Treinador"] = novo_treinador
-                            print("Edição feita com sucesso")
-                            break
-
+                    novo_treinador = validar_texto("Digite o novo nome")
+                    l["Treinador"] = novo_treinador
+                            
+                print("Edição feita com sucesso")
                 #Quebra o laço de repetição "for"
                 break
 

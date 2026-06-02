@@ -39,9 +39,10 @@ def validar_numero(numero):
     while True:
         ID_lista = input(numero).strip()
 
-        if texto(ID_lista):
+        if numeros(ID_lista):
             break
-          
+        
+    ID_lista = int(ID_lista)
     return ID_lista
     
 

@@ -2,13 +2,17 @@ import json
 from random import randint
 from funções import texto
 from funções import numeros 
+from funções import validar_texto
+from funções import validar_numero
 
 
 
 while True:
+    #Abre o arquivo .json e carrega os itens dentro da variável "dados"
     with open("seleções.json", "r", encoding="utf-8") as arq:
         dados = json.load(arq)
     permissao1 = False
+    #Tabela de opções
     print("""
 Bem vindo, escolha uma das coisas a seguir:
 1- Ver lista
@@ -17,18 +21,23 @@ Bem vindo, escolha uma das coisas a seguir:
 4- Excluir
 5- Editar
 6- Sair""")
+    
     escolha = input("Resposta: ").strip()
 
+    #Função é chamada dentro do "if"
     if numeros(escolha):
         escolha = int(escolha)
         permissao1 = True
-
+    
+    #Condição para caso a pessoa digite um número que não seja dentro lista 
     if escolha not in (1,2,3,4,5,6) and permissao1 == True:
         print("Escolha um número na lista")
 
     if escolha == 1:
-        print("-="*20)
+        #Percorre a lista 
         for lista in dados["s"]:
+            #Todos os itens são mostrados
+            print("-="*20)
             print(f"ID: {lista['ID']}")
             print(f"País: {lista['País']}")
             print(f"Grupo: {lista['Grupo']}")
@@ -39,74 +48,66 @@ Bem vindo, escolha uma das coisas a seguir:
     elif escolha == 2:
         while True:
             encontrado3 = False
-            lista_nome = input("Fale o ID do país: ").strip()
+            lista_nome = validar_numero("Fale o ID do país: ")
 
+            #Função é chamada dentro do "if"
             if numeros(lista_nome):
                 lista_nome = int(lista_nome)
                 break
 
-        for p in dados["s"]:
-            if p["ID"] == lista_nome:
+        #Percorre a lista 
+        for pais in dados["s"]:
+            print("-="*20)
+            if pais["ID"] == lista_nome:
                     encontrado3 = True
+                    #Os itens do país pedido são mostrados
+                    print(f"ID: {pais['ID']}")
+                    print(f"País: {pais['País']}")
+                    print(f"Grupo: {pais['Grupo']}")
+                    print(f"Confederação: {pais['Confederação']}")
+                    print(f"Treinador: {pais['Treinador']}")
                     print("-="*20)
-                    print(f"ID: {p['ID']}")
-                    print(f"País: {p['País']}")
-                    print(f"Grupo: {p['Grupo']}")
-                    print(f"Confederação: {p['Confederação']}")
-                    print(f"Treinador: {p['Treinador']}")
-                    print("-="*20)
+
+        #Caso o país não seja encontrado
         if encontrado3 == False:
             print("País não encontrado")
 
 
     elif escolha == 3:
+        #Sistema de criação de ID
         while True:
             duplicado = False
             novo_id = ""
             id = ""
-            for i in range (10):
-                n = randint(1,9)
-                id += str(n)
+            for num in range (10):
+                num = randint(1,9)
+                id += str(num)
             id = int(id)
             for ids in dados["s"]:
                 if id == ids["ID"]:
                     duplicado = True
             
+            #Caso tenha um ID duplicado, o sistema reinicia
             if duplicado == True:
                 continue
-
-            if duplicado == False:
+            
+            #Caso não tenha um ID duplicado, o ID é criado
+            elif duplicado == False:
                 novo_id = id
                 break
  
 
-        while True:
-            novo_p = input("País: ").strip()
+        novo_p = validar_texto("País: ")
+        novo_g = validar_texto("Grupo: ")
+        novo_c = validar_texto("Confederação: ")
+        novo_t = validar_texto("Treinador: ")
 
-            if texto(novo_p):
-                break
-        
-        while True:
-            novo_g = input("Grupo: ").strip()
-
-            if texto(novo_g):
-                break
-
-        while True:
-            novo_c = input("Confederação: ").strip()
-
-            if texto(novo_c):
-                break
-
-        while True:
-            novo_t = input("Treinador: ").strip()
-
-            if texto(novo_t):
-                break
-
+        #Os itens são adicionados dentro de uma biblioteca 
         nova_seleção = {"País": novo_p, "Grupo": novo_g, "Confederação": novo_c, "Treinador": novo_t, "ID": novo_id}
+        #A biblioteca é adicionada dentro da váriavel "dados"
         dados["s"].append(nova_seleção)
 
+        #As alterações são escritas no arquivo .json
         with open("seleções.json", "w", encoding="utf-8") as arq:
             json.dump(dados, arq, indent=4, ensure_ascii=False)
 
@@ -119,6 +120,7 @@ Bem vindo, escolha uma das coisas a seguir:
                 remover = int(remover)
                 break 
 
+        #Percorre a lista 
         for lista in dados["s"]:
             if lista["ID"] == remover:
                 print("ID encontrado")
@@ -128,18 +130,23 @@ Bem vindo, escolha uma das coisas a seguir:
                             confirmacao = input(f"Você realmente desejar excluir os dados do país {lista["País"]}? [S/N]").upper().strip()
                             
                             if confirmacao == "S":
+                                #Remove o item dentro da váriavel "dados"
                                 dados["s"].remove(lista)
                                 print("Removido")
 
+                                #As alterações são escritas no arquivo .json
                                 with open("seleções.json", "w", encoding="utf-8") as arq:
                                     json.dump(dados, arq, indent=4, ensure_ascii=False)
                                 break
 
                             elif confirmacao == "N":
                                 break
+                            #Caso digite algo diferente
                             else:
                                 print("Digite somente 'S' ou 'N' ")
                             continue
+
+        #Caso o país não seja encontrado
         if encontrado == False:
             print("Não encontrado")
 
@@ -159,7 +166,8 @@ Bem vindo, escolha uma das coisas a seguir:
                     print('Digite um número da lista')
                 else:
                     pode2 = True
-
+            
+            #Caso o valor digitado seja um número e que está 
             if pode1 == True and pode2 == True:
                 break
 
@@ -169,6 +177,7 @@ Bem vindo, escolha uma das coisas a seguir:
                 nome = int(nome)
                 break
 
+        #Percorre a lista
         for l in dados["s"]: 
             if l["ID"] == nome:
                 print("País encontrado")
@@ -180,42 +189,49 @@ Bem vindo, escolha uma das coisas a seguir:
                         novo_país = input("Digite o novo nome: ").strip()
                         
                         if texto(novo_país):
+                            #Troca o item antigo pelo novo item
                             l["País"] = novo_país
                             print("Edição feita com sucesso")
+                            #Quebra o laço de repetição "while"
                             break
-                    break
-                        
 
                 elif edit == 2:
-                    novo_grupo = input("Digite o novo nome: ").strip()
-                    if texto(novo_grupo):
-                        l["Grupo"] = novo_grupo
-                        print("Edição feita com sucesso")
-                        break
+                    while True:
+                        novo_grupo = input("Digite o novo nome: ").strip()
+                        if texto(novo_grupo):
+                            l["Grupo"] = novo_grupo
+                            print("Edição feita com sucesso")
+                            break
 
                 elif edit == 3:
-                    novo_confederação = input("Digite o novo nome: ").strip()
-
-                    if texto(novo_confederação):
-                        l["Confederação"] = novo_confederação
-                        print("Edição feita com sucesso")
-                        break
+                    while True:
+                        novo_confederação = input("Digite o novo nome: ").strip()
+                        if texto(novo_confederação):
+                            l["Confederação"] = novo_confederação
+                            print("Edição feita com sucesso")
+                            break
 
                 elif edit == 4:
-                    novo_treinador = input("Digite o novo nome: ").strip()
+                    while True:
+                        novo_treinador = input("Digite o novo nome: ").strip()
+                        if texto(novo_treinador):
+                            l["Treinador"] = novo_treinador
+                            print("Edição feita com sucesso")
+                            break
 
-                    if texto(novo_treinador):
-                        l["Treinador"] = novo_treinador
-                        print("Edição feita com sucesso")
-                        break
+                #Quebra o laço de repetição "for"
+                break
 
+        #As alterações são escritas no arquivo .json
         with open("seleções.json", "w", encoding="utf-8") as arq:
             json.dump(dados, arq, indent=4, ensure_ascii=False)
         
+        #Caso o país não seja encontrado
         if encontrado2 == False:
             print("ID não encontrado")
             continue
 
     elif escolha == 6:
+        #O programa se encerra
         print("Até a próxima!")
         break

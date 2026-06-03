@@ -30,6 +30,7 @@ def validar_texto(mensagem):
     while True:
         msg = input(mensagem).strip()
 
+        #Faz a validação da variável "msg" dentro do loop até o valor ser válido
         if texto(msg):
             break
 
@@ -37,13 +38,15 @@ def validar_texto(mensagem):
 
 def validar_numero(numero):
     while True:
-        ID_lista = input(numero).strip()
+        num_lista = input(numero).strip()
 
-        if numeros(ID_lista):
+        #Faz a validação da variável "ID_lista" dentro do loop até o valor ser válido 
+        if numeros(num_lista):
             break
-        
-    ID_lista = int(ID_lista)
-    return ID_lista
+    
+    #Converte a váriavel em "int" para encontrar os IDs do arquivo .json
+    num_lista = int(num_lista)
+    return num_lista
     
 
 

@@ -1,6 +1,5 @@
 import json
 from random import randint
-from funções import texto
 from funções import numeros 
 from funções import validar_texto
 from funções import validar_numero
@@ -12,7 +11,6 @@ while True:
     with open("seleções.json", "r", encoding="utf-8") as arq:
         dados = json.load(arq)
     permissao1 = False
-    #Tabela de opções
     print("""
 Bem vindo, escolha uma das coisas a seguir:
 1- Ver lista
@@ -33,11 +31,9 @@ Bem vindo, escolha uma das coisas a seguir:
     if escolha not in (1,2,3,4,5,6) and permissao1 == True:
         print("Escolha um número na lista")
 
-    if escolha == 1:
-        #Percorre a lista 
+    if escolha == 1: 
         print("-="*20)
         for lista in dados["s"]:
-            #Todos os itens são mostrados
             print(f"ID: {lista['ID']}")
             print(f"País: {lista['País']}")
             print(f"Grupo: {lista['Grupo']}")
@@ -49,21 +45,18 @@ Bem vindo, escolha uma das coisas a seguir:
         encontrado3 = False
         lista_nome = validar_numero("Fale o ID do país: ")
 
-
-        #Percorre a lista 
         for pais in dados["s"]:
-            print("-="*20)
             if pais["ID"] == lista_nome:
                     encontrado3 = True
                     #Os itens do país pedido são mostrados
+                    print("-="*20)
                     print(f"ID: {pais['ID']}")
                     print(f"País: {pais['País']}")
                     print(f"Grupo: {pais['Grupo']}")
                     print(f"Confederação: {pais['Confederação']}")
                     print(f"Treinador: {pais['Treinador']}")
-            print("-="*20)
+                    print("-="*20)
 
-        #Caso o país não seja encontrado
         if encontrado3 == False:
             print("País não encontrado")
 
@@ -85,7 +78,7 @@ Bem vindo, escolha uma das coisas a seguir:
             if duplicado == True:
                 continue
             
-            #Caso não tenha um ID duplicado, o ID é criado
+            #Caso não tenha um ID duplicado, o ID é criado para o cadastro
             elif duplicado == False:
                 novo_id = id
                 break
@@ -96,30 +89,30 @@ Bem vindo, escolha uma das coisas a seguir:
         novo_c = validar_texto("Confederação: ")
         novo_t = validar_texto("Treinador: ")
 
-        #Os itens são adicionados dentro de uma biblioteca 
+        #Os itens são adicionados dentro de um dicionário 
         nova_seleção = {"País": novo_p, "Grupo": novo_g, "Confederação": novo_c, "Treinador": novo_t, "ID": novo_id}
-        #A biblioteca é adicionada dentro da váriavel "dados"
+        #O dicionário é adicionado na lista dentro do arquivo armazenado na variável "dados"
         dados["s"].append(nova_seleção)
 
         #As alterações são escritas no arquivo .json
         with open("seleções.json", "w", encoding="utf-8") as arq:
-            json.dump(dados, arq, indent=4, ensure_ascii=False)
+            json.dump(dados, arq, indent=4, ensure_ascii=False) 
 
     elif escolha == 4:
         encontrado = False
         remover = validar_numero("Fale o ID do país: ")
 
-        #Percorre a lista 
         for lista in dados["s"]:
             if lista["ID"] == remover:
                 print("ID encontrado")
                 encontrado = True
+
                 if encontrado == True:
                         while True: 
-                            confirmacao = input(f"Você realmente desejar excluir os dados do país {lista["País"]}? [S/N]").upper().strip()
+                            confirmacao = input(f"Você realmente desejar excluir os dados do país {lista["País"]}? [S/N] ").upper().strip()
                             
                             if confirmacao == "S":
-                                #Remove o item dentro da váriavel "dados"
+                                #Remove o item dentro da lista de dados 
                                 dados["s"].remove(lista)
                                 print("Removido")
 
@@ -141,24 +134,19 @@ Bem vindo, escolha uma das coisas a seguir:
 
     elif escolha == 5:
         encontrado2 = False
-        pode2 = False
+        #Laço de repetição para garantir que o valor digitado seja válido
         while  True:
-            pode1 = False
-            edit = validar_numero("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: ").strip()
-            pode1 = True
+            edit = validar_numero("Qual elemento? \n 1 - País \n 2 - Grupo \n 3 - Confederação \n 4 - Treinador \n Resposta: ")
             
-            if edit not in (1,2,3,4) and pode1 == True:
+            if edit not in (1,2,3,4):
                 print('Digite um número da lista')
+            #Caso o valor seja válido, o loop acaba
             else:
-                pode2 = True
-            
-            #Caso o valor digitado seja um número e que está 
-            if pode1 == True and pode2 == True:
                 break
 
         nome = validar_numero("Fale o ID do país: ")
 
-        #Percorre a lista
+        #Percorre a lista para encontrar o país do ID solicitado
         for l in dados["s"]: 
             if l["ID"] == nome:
                 print("País encontrado")
@@ -166,22 +154,19 @@ Bem vindo, escolha uma das coisas a seguir:
 
             if encontrado2 == True:
                 if edit == 1:
-                    novo_país = validar_texto("Digite o novo nome")
+                    novo_país = validar_texto("Digite o novo nome: ")
                     l["País"] = novo_país
 
                 elif edit == 2:
-                    novo_grupo = validar_texto("Digite o novo nome")
+                    novo_grupo = validar_texto("Digite o novo nome: ")
                     l["Grupo"] = novo_grupo
                     
-                            
-
                 elif edit == 3:
-                    novo_confederação = validar_texto("Digite o novo nome")    
+                    novo_confederação = validar_texto("Digite o novo nome: ")    
                     l["Confederação"] = novo_confederação
                             
-
                 elif edit == 4:
-                    novo_treinador = validar_texto("Digite o novo nome")
+                    novo_treinador = validar_texto("Digite o novo nome: ")
                     l["Treinador"] = novo_treinador
                             
                 print("Edição feita com sucesso")
@@ -195,7 +180,6 @@ Bem vindo, escolha uma das coisas a seguir:
         #Caso o país não seja encontrado
         if encontrado2 == False:
             print("ID não encontrado")
-            continue
 
     elif escolha == 6:
         #O programa se encerra
